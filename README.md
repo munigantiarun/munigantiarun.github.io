@@ -20,7 +20,7 @@ This portfolio showcases my skills, projects, and contact information in a clean
 
 ## How to View
 
-The website is published at: [yourusername.github.io](https://yourusername.github.io)
+The website is published at: [munigantiarun.github.io](https://munigantiarun.github.io)
 
 ## Setup for Local Development
 
