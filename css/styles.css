@@ -1,0 +1,33 @@
+/* This file contains additional styles for the portfolio website */
+/* You can move the inline styles from index.html to this file if preferred */
+
+/* Add any custom styles below */
+.btn {
+    display: inline-block;
+    background: #50b3a2;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background: #3d8c7d;
+}
+
+/* You can add animations, media queries, or other advanced CSS here */
+@media screen and (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+    
+    .projects {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-info {
+        flex-direction: column;
+        gap: 10px;
+    }
+}

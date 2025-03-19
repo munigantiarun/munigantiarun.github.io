@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arun Muniganti - Portfolio</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* shadcn-inspired variables */
+        :root {
+            --background: 0 0% 100%;
+            --foreground: 222.2 84% 4.9%;
+            --card: 0 0% 100%;
+            --card-foreground: 222.2 84% 4.9%;
+            --primary: 221.2 83.2% 53.3%;
+            --primary-foreground: 210 40% 98%;
+            --secondary: 210 40% 96.1%;
+            --secondary-foreground: 222.2 47.4% 11.2%;
+            --muted: 210 40% 96.1%;
+            --muted-foreground: 215.4 16.3% 46.9%;
+            --accent: 210 40% 96.1%;
+            --accent-foreground: 222.2 47.4% 11.2%;
+            --border: 214.3 31.8% 91.4%;
+            --ring: 221.2 83.2% 53.3%;
+            --radius: 0.5rem;
+        }
+
+        .dark {
+            --background: 222.2 84% 4.9%;
+            --foreground: 210 40% 98%;
+            --card: 222.2 84% 4.9%;
+            --card-foreground: 210 40% 98%;
+            --primary: 217.2 91.2% 59.8%;
+            --primary-foreground: 222.2 47.4% 11.2%;
+            --secondary: 217.2 32.6% 17.5%;
+            --secondary-foreground: 210 40% 98%;
+            --muted: 217.2 32.6% 17.5%;
+            --muted-foreground: 215 20.2% 65.1%;
+            --accent: 217.2 32.6% 17.5%;
+            --accent-foreground: 210 40% 98%;
+            --border: 217.2 32.6% 17.5%;
+            --ring: 224.3 76.3% 48%;
+        }
+
+        /* shadcn component styles */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius);
+            font-weight: 500;
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+            height: 2.5rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            transition-property: color, background-color, border-color;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
+        }
+
+        .btn-primary {
+            background-color: hsl(var(--primary));
+            color: hsl(var(--primary-foreground));
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+        }
+
+        .btn-outline {
+            border: 1px solid hsl(var(--border));
+            background-color: transparent;
+            color: hsl(var(--foreground));
+        }
+
+        .btn-outline:hover {
+            background-color: hsl(var(--accent));
+            color: hsl(var(--accent-foreground));
+        }
+
+        .card {
+            border-radius: var(--radius);
+            background-color: hsl(var(--card));
+            color: hsl(var(--card-foreground));
+            border: 1px solid hsl(var(--border));
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            border-radius: 9999px;
+            padding: 0.125rem 0.625rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            background-color: hsl(var(--secondary));
+            color: hsl(var(--secondary-foreground));
+        }
+
+        .section-heading {
+            font-size: 1.875rem;
+            font-weight: bold;
+            line-height: 2.25rem;
+            letter-spacing: -0.025em;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid hsl(var(--border));
+            padding-bottom: 0.5rem;
+        }
+
+        /* GitHub Pages style customizations */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #24292e;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        a {
+            color: hsl(var(--primary));
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .profile-image {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border: 3px solid hsl(var(--border));
+        }
+
+        .project-card {
+            margin-bottom: 1.5rem;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .social-icon {
+            width: 1.5rem;
+            height: 1.5rem;
+            fill: currentColor;
+            margin-right: 0.75rem;
+        }
+        
+        .experience-card {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 2rem;
+        }
+        
+        .experience-card:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: hsl(var(--primary));
+        }
+        
+        .experience-card:after {
+            content: "";
+            position: absolute;
+            left: 5px;
+            top: 24px;
+            width: 2px;
+            height: calc(100% - 16px);
+            background-color: hsl(var(--border));
+        }
+        
+        .experience-card:last-child:after {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header class="mb-12 text-center">
+        <img src="/api/placeholder/150/150" alt="Arun Muniganti" class="profile-image mx-auto mb-4">
+        <h1 class="text-3xl font-bold mb-2">Arun Muniganti</h1>
+        <p class="text-xl text-gray-600 mb-4">Senior Data Engineer</p>
+        <p class="max-w-2xl mx-auto mb-6">
+            Data Engineering professional with over 4 years of experience designing and implementing scalable distributed
+            databases, web applications, and data integration solutions. Expertise in Python, SQL, RESTful APIs, and front-end interfaces.
+        </p>
+        <div class="flex justify-center flex-wrap space-x-3">
+            <a href="mailto:munigantiarun94@gmail.com" class="btn btn-outline flex items-center mb-2" target="_blank">
+                <svg class="social-icon" viewBox="0 0 24 24">
+                    <path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z"/>
+                    <path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z"/>
+                </svg>
+                Email
+            </a>
+            <a href="https://linkedin.com/in/munigantiarun" class="btn btn-outline flex items-center mb-2" target="_blank">
+                <svg class="social-icon" viewBox="0 0 24 24">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+                LinkedIn
+            </a>
+            <a href="tel:+19452177098" class="btn btn-outline flex items-center mb-2">
+                <svg class="social-icon" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                </svg>
+                Phone
+            </a>
+            <a href="#" class="btn btn-primary flex items-center mb-2">
+                <svg class="social-icon" viewBox="0 0 24 24">
+                    <path d="M5.625 1.5c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V12.75A3.75 3.75 0 0016.5 9h-1.875a1.875 1.875 0 01-1.875-1.875V5.25A3.75 3.75 0 009 1.5H5.625z" />
+                    <path d="M12.971 1.816A5.23 5.23 0 0114.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 013.434 1.279 9.768 9.768 0 00-6.963-6.963z" />
+                </svg>
+                Resume
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Skills Section -->
+        <section class="mb-12">
+            <h2 class="section-heading">Technical Skills</h2>
+            <div class="mb-4">
+                <h3 class="font-semibold mb-2">Programming Languages</h3>
+                <div class="flex flex-wrap gap-2">
+                    <span class="badge">Python</span>
+                    <span class="badge">Java</span>
+                    <span class="badge">JavaScript</span>
+                    <span class="badge">Node.js</span>
+                    <span class="badge">OOP</span>
+                </div>
+            </div>
+            <div class="mb-4">
+                <h3 class="font-semibold mb-2">Web Development</h3>
+                <div class="flex flex-wrap gap-2">
+                    <span class="badge">React</span>
+                    <span class="badge">Django</span>
+                    <span class="badge">HTML/CSS</span>
+                    <span class="badge">RESTful APIs</span>
+                    <span class="badge">Frontend/Backend Integration</span>
+                </div>
+            </div>
+            <div class="mb-4">
+                <h3 class="font-semibold mb-2">Databases</h3>
+                <div class="flex flex-wrap gap-2">
+                    <span class="badge">Snowflake</span>
+                    <span class="badge">MongoDB</span>
+                    <span class="badge">PostgreSQL</span>
+                    <span class="badge">Redshift</span>
+                    <span class="badge">MySQL</span>
+                    <span class="badge">SQLite</span>
+                    <span class="badge">NoSQL</span>
+                </div>
+            </div>
+            <div class="mb-4">
+                <h3 class="font-semibold mb-2">Cloud & Tools</h3>
+                <div class="flex flex-wrap gap-2">
+                    <span class="badge">AWS S3</span>
+                    <span class="badge">Data Lakes</span>
+                    <span class="badge">Data Warehousing</span>
+                    <span class="badge">Git</span>
+                    <span class="badge">GitLab</span>
+                    <span class="badge">GitHub</span>
+                    <span class="badge">Jira</span>
+                </div>
+            </div>
+            <div>
+                <h3 class="font-semibold mb-2">Data Visualization & Workflow</h3>
+                <div class="flex flex-wrap gap-2">
+                    <span class="badge">Tableau</span>
+                    <span class="badge">Power BI</span>
+                    <span class="badge">Matplotlib</span>
+                    <span class="badge">Agile/Scrum</span>
+                    <span class="badge">CI/CD</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section class="mb-12">
+            <h2 class="section-heading">Work Experience</h2>
+            
+            <div class="experience-card">
+                <div class="flex flex-col sm:flex-row sm:justify-between mb-1">
+                    <h3 class="font-semibold">Software Engineer</h3>
+                    <span class="text-gray-600">May 2021 - February 2023</span>
+                </div>
+                <p class="text-gray-600 italic mb-2">ATMECS Global Inc (Twitter, currently X) | Hyderabad, India</p>
+                <ul class="list-disc pl-5 text-gray-700">
+                    <li>Designed and implemented end-to-end web applications with Python backend and React frontend, providing seamless user experiences</li>
+                    <li>Developed and optimized RESTful APIs for internal and external operations, improving system interoperability by 40%</li>
+                    <li>Engineered scalable database solutions using Snowflake SQL and MongoDB, reducing query execution time by 40%</li>
+                    <li>Built and maintained data lakes on AWS cloud platform, implementing partitioning strategies that improved data retrieval efficiency by 28%</li>
+                    <li>Created intuitive interfaces with Tableau that enabled self-service analytics, reducing reporting request backlog by 65%</li>
+                </ul>
+            </div>
+            
+            <div class="experience-card">
+                <div class="flex flex-col sm:flex-row sm:justify-between mb-1">
+                    <h3 class="font-semibold">Software Engineer</h3>
+                    <span class="text-gray-600">August 2018 - April 2021</span>
+                </div>
+                <p class="text-gray-600 italic mb-2">OOFIX Infotech (Procter & Gamble) | Madurai, India</p>
+                <ul class="list-disc pl-5 text-gray-700">
+                    <li>Built responsive web applications using Django with PostgreSQL backend and HTML/CSS frontend, enhancing internal operations</li>
+                    <li>Designed and optimized PostgreSQL databases supporting business applications, improving query performance by 45%</li>
+                    <li>Created and integrated RESTful APIs for cross-platform data exchange, reducing data silos across distributed systems</li>
+                    <li>Developed interactive dashboards using modern front-end frameworks connected to multiple backend data sources</li>
+                </ul>
+            </div>
+            
+            <div class="experience-card">
+                <div class="flex flex-col sm:flex-row sm:justify-between mb-1">
+                    <h3 class="font-semibold">Automation Engineer</h3>
+                    <span class="text-gray-600">July 2017 - July 2018</span>
+                </div>
+                <p class="text-gray-600 italic mb-2">OOFIX Infotech (GEICO) | Madurai, India</p>
+                <ul class="list-disc pl-5 text-gray-700">
+                    <li>Performed comprehensive API testing using Postman and HTTP Client, validating data integrity across integrated systems</li>
+                    <li>Built and maintained Jenkins pipelines for Continuous Integration and Delivery, reducing deployment time by 40%</li>
+                    <li>Designed and executed test automation frameworks with Selenium WebDriver to ensure application reliability</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="mb-12">
+            <h2 class="section-heading">Featured Projects</h2>
+            
+            <!-- Project 1 -->
+            <div class="card p-4 project-card">
+                <h3 class="text-xl font-semibold mb-2">Scalable Data Pipeline & Analytics Platform</h3>
+                <p class="text-gray-600 mb-2">Personal Project | 2023</p>
+                <p class="text-gray-700 mb-3">
+                    End-to-end data pipeline solution with advanced analytics capabilities, optimized for performance and scalability.
+                </p>
+                <div class="flex flex-wrap gap-2 mb-3">
+                    <span class="badge">Snowflake</span>
+                    <span class="badge">Python</span>
+                    <span class="badge">MongoDB</span>
+                    <span class="badge">React</span>
+                    <span class="badge">Cloud Architecture</span>
+                </div>
+                <ul class="list-disc pl-5 text-gray-700 mb-3">
+                    <li>Developed an end-to-end solution with Python backend, React frontend, and Snowflake data storage</li>
+                    <li>Engineered a scalable database architecture with optimized SQL queries and MongoDB integration</li>
+                    <li>Created RESTful APIs for data exchange between frontend and backend systems</li>
+                    <li>Implemented delta data loading strategy and query optimization techniques, reducing processing time by 60%</li>
+                </ul>
+            </div>
+            
+            <!-- Project 2 -->
+            <div class="card p-4 project-card">
+                <h3 class="text-xl font-semibold mb-2">Smart Classroom Student-Teacher Portal</h3>
+                <p class="text-gray-600 mb-2">Academic Project | 2022</p>
+                <p class="text-gray-700 mb-3">
+                    Comprehensive web-based platform for educational institutions to manage classes, assignments, and student-teacher interactions.
+                </p>
+                <div class="flex flex-wrap gap-2 mb-3">
+                    <span class="badge">Django</span>
+                    <span class="badge">Python</span>
+                    <span class="badge">JavaScript</span>
+                    <span class="badge">HTML/CSS</span>
+                    <span class="badge">SQLite</span>
+                </div>
+                <ul class="list-disc pl-5 text-gray-700 mb-3">
+                    <li>Developed web-based platform with Django backend and responsive frontend</li>
+                    <li>Leveraged SQLite for efficient data management with optimized query performance</li>
+                    <li>Implemented RBAC security model for different user roles with encrypted communication</li>
+                    <li>Created intuitive interfaces focused on usability, achieving sub-2-second response times</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section class="mb-12">
+            <h2 class="section-heading">Education</h2>
+            
+            <div class="mb-6">
+                <div class="flex flex-col sm:flex-row sm:justify-between mb-1">
+                    <h3 class="font-semibold">Master of Science in Computer & Information Sciences</h3>
+                    <span class="text-gray-600">Expected December 2024</span>
+                </div>
+                <p class="text-gray-600 italic">Southern Arkansas University | Magnolia, Arkansas</p>
+            </div>
+            
+            <div>
+                <div class="flex flex-col sm:flex-row sm:justify-between mb-1">
+                    <h3 class="font-semibold">Bachelor in Electrical and Electronics Engineering</h3>
+                    <span class="text-gray-600">May 2016</span>
+                </div>
+                <p class="text-gray-600 italic">Kakatiya University | Warangal, India</p>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section>
+            <h2 class="section-heading">Contact</h2>
+            <p class="mb-4">
+                I'm currently pursuing my Master's in Computer & Information Sciences at Southern Arkansas University. I'm interested in opportunities where I can apply my data engineering and full-stack development skills.
+            </p>
+            <div class="flex flex-wrap gap-4">
+                <a href="mailto:munigantiarun94@gmail.com" class="btn btn-primary">
+                    Send Email
+                </a>
+                <a href="tel:+19452177098" class="btn btn-outline">
+                    Call: (945) 217-7098
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="mt-16 pt-8 border-t border-gray-200 text-gray-500 text-center text-sm">
+        <p>&copy; 2025 Arun Muniganti. All rights reserved.</p>
+        <p class="mt-1">Based in Magnolia, AR</p>
+    </footer>
+</body>
+</html>
